@@ -1,26 +1,218 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from 'react';
+import './styles.css';
+import Spacer from 'react-add-space';
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	let [
+		input,
+		setInput
+	] = useState([]);
+
+	let allnumber = [
+		0,
+		1,
+		2,
+		3,
+		4,
+		5,
+		6,
+		7,
+		8,
+		9
+	];
+
+	const [
+		ran,
+		setRan
+	] = useState([]);
+	const [
+		two,
+		setTwo
+	] = useState([]);
+	const [
+		three,
+		setThree
+	] = useState([]);
+
+	const summit = (e) => {
+		function inArray(arr, el) {
+			for (var i = 0; i < arr.length; i++) if (arr[i] === el) return true;
+			return false;
+		}
+		let newinput = [
+			input.first,
+			input.second
+		];
+
+		function arr_diff(a1, a2) {
+			var a = [],
+				diff = [];
+
+			for (var i = 0; i < a1.length; i++) {
+				a[a1[i]] = true;
+			}
+
+			for (var i = 0; i < a2.length; i++) {
+				if (a[a2[i]]) {
+					delete a[a2[i]];
+				} else {
+					a[a2[i]] = true;
+				}
+			}
+
+			for (var k in a) {
+				diff.push(k);
+			}
+
+			return diff;
+		}
+
+		let ex = arr_diff(allnumber, newinput);
+
+		console.log(ex);
+		e.preventDefault();
+		function getRandomIntNoDuplicates(min, max, DuplicateArr) {
+			var RandomInt = Math.floor(Math.random() * (max - min + 1)) + min;
+			if (DuplicateArr.length > max - min) return false; // break endless recursion
+			if (!inArray(DuplicateArr, RandomInt)) {
+				DuplicateArr.push(RandomInt);
+				return RandomInt;
+			}
+			return getRandomIntNoDuplicates(min, max, DuplicateArr); //recurse
+		}
+
+		var duplicates = [];
+		let limit = ex.length - 1;
+
+		let arr = [];
+		for (var i = 1; i <= 3; i++) {
+			arr.push(getRandomIntNoDuplicates(1, limit, duplicates));
+		}
+
+		let randomThree = [
+			ex[arr[0]],
+			ex[arr[1]],
+			ex[arr[2]]
+		];
+
+		let allFiveNum = newinput.concat(randomThree);
+		setRan(allFiveNum);
+		let twoArr = [
+			12,
+			13,
+			14,
+			15,
+			23,
+			24,
+			25,
+			34,
+			35,
+			45
+		];
+
+		let threeArr = [
+			123,
+			124,
+			125,
+			134,
+			135,
+			145,
+			234,
+			235,
+			245,
+			345
+		];
+
+		let resultsTwo = [];
+		twoArr.map((item) => {
+			item = item.toString();
+			let b = allFiveNum[item[0] - 1].toString() + allFiveNum[item[1] - 1].toString();
+			resultsTwo.push(b);
+		});
+
+		setTwo(resultsTwo);
+
+		let resultsThree = [];
+		threeArr.map((item) => {
+			item = item.toString();
+			let b =
+				allFiveNum[item[0] - 1].toString() +
+				allFiveNum[item[1] - 1].toString() +
+				allFiveNum[item[2] - 1].toString();
+			resultsThree.push(b);
+		});
+
+		console.log(resultsThree);
+		setThree(resultsThree);
+	};
+
+	const handleNum = (e) => {
+		const { name, value } = e.target;
+		setInput((prevValue) => {
+			return {
+				...prevValue,
+				[name] : value
+			};
+		});
+	};
+	return (
+		<div class="p-4 w-full bg-gray-800 h-screen">
+			<div class="p-2 text-gray-700 bg-gray-900 rounded-lg shadow-lg ">
+				<span class="px-2 mr-2 border-r border-gray-800">
+					<img
+						src="https://www.freepnglogos.com/uploads/spotify-logo-png/file-spotify-logo-png-4.png"
+						alt="alt placeholder"
+						class="w-8 h-8 -mt-1 inline mx-auto"
+					/>
+				</span>
+				<span class="px-1 hover:text-white cursor-pointer">
+					<i class="fas fa-stream p-2 bg-gray-800 rounded-full" />
+				</span>
+				<span class="px-1 hover:text-white cursor-pointer">
+					<i class="fas fa-search p-2 bg-gray-800 rounded-full" />
+				</span>
+				<span class="px-1 hover:text-white cursor-pointer">
+					<i class="fas fa-th p-2 bg-gray-800 rounded-full" />
+				</span>
+				<span class="px-1 hover:text-white cursor-pointer">
+					<i class="w-8 fas fa-calendar-alt p-2 bg-gray-800 rounded-full" />
+				</span>
+				<span class="px-1 hover:text-white cursor-pointer w-8 relative">
+					<i class="fas fa-bell p-2 bg-gray-800 rounded-full" />
+					<span class="absolute right-0 top-0 -mt-2 -mr-1 text-xs bg-red-500 text-white font-medium px-2 shadow-lg rounded-full">
+						3
+					</span>
+				</span>
+				<span class="hover:text-white cursor-pointer w-10 relative float-right mr-3">
+					<i class="fas fa-user p-2 bg-gray-800 rounded-full" />
+					<span class="absolute right-0 top-0 -mt-1 -mr-1 text-xs bg-yellow-500 text-black font-medium px-2 rounded-full">
+						3
+					</span>
+				</span>
+			</div>
+			<div class="bg-gray-700 p-6 m-2 rounded-lg ">
+				<input class="bg-gray-200 rounded-sm p-1 w-8 text-center" onChange={handleNum} name="first" />
+				<input class="bg-gray-200 rounded-sm p-1 ml-2 w-8 text-center" onChange={handleNum} name="second" />
+				<button class="bg-green-900 p-2 ml-4 rounded-lg text-white" onClick={summit}>
+					คำนวน
+				</button>
+				<div class="flex mt-5">{ran.map((item) => <ShowAll data={item} />)}</div>
+				<div class="flex text-lg text-white">{two.map((item) => <Two data={item} />)}</div>
+				<div class="flex text-lg text-white">{three.map((item) => <Two data={item} />)}</div>
+			</div>
+		</div>
+	);
 }
+
+const ShowAll = (props) => {
+	return <div class="flex text-lg text-white">{props.data}</div>;
+};
+const Two = (props) => {
+	return (
+		<React.Fragment>
+			{props.data}
+			<Spacer amount={2} />
+		</React.Fragment>
+	);
+};
 
 export default App;
