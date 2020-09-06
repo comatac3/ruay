@@ -214,8 +214,9 @@ function App() {
 					คำนวน
 				</button>
 				<div class="flex mt-5">{ran.map((item) => <ShowAll data={item} />)}</div>
-				<div class="flex text-lg text-white">{two.sort().map((item) => <Two data={item} />)}</div>
-				<div class="flex text-lg text-white">{three.sort().map((item) => <Two data={item} />)}</div>
+				<p>ยีกีเว็บรวยรอบที่</p่>
+				
+				<div class="flex text-lg text-white">{three.sort().slice().map((item) => <Two data={item} />)}</div>
 				<div class="flex text-lg text-white mt-5">{rantwo.sort().slice(0, 3).map((item) => <Two data={item} />)}</div><br></br>
 				<div class="flex text-lg text-white ">{rantwo.sort().slice(3).map((item) => <Two data={item} />)}</div>
 				{/* <textarea id="w3review" name="w3review" rows="4" cols="50">
