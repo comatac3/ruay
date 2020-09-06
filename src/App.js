@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import './styles.css';
 import Spacer from 'react-add-space';
 function App() {
@@ -36,13 +36,13 @@ function App() {
 		three,
 		setThree
 	] = useState([]);
-
+	let newinput = [];
 	const summit = (e) => {
 		function inArray(arr, el) {
 			for (var i = 0; i < arr.length; i++) if (arr[i] === el) return true;
 			return false;
 		}
-		let newinput = [
+		newinput = [
 			input.first,
 			input.second
 		];
@@ -214,10 +214,22 @@ function App() {
 					คำนวน
 				</button>
 				<div class="flex mt-5">{ran.map((item) => <ShowAll data={item} />)}</div>
-				<div class="flex text-lg text-white">{two.sort().map((item) => <Two data={item} />)}</div>
-				<div class="flex text-lg text-white">{three.sort().map((item) => <Two data={item} />)}</div>
-				<div class="flex text-lg text-white mt-5">{rantwo.sort().slice(0, 3).map((item) => <Two data={item} />)}</div><br></br>
+				<p class="text-white">ยีกีเว็บรวยรอบที่</p>
+				<div class="flex mt-5">{<ShowAll2 data={ran[0]} />}</div>
+				<div class="flex">{<ShowAll2 data={ran[1]} />}</div>
+				{/* <div class="flex text-lg text-white">{two.sort().map((item) => <Two data={item} />)}</div> */}
+				<div class="flex text-lg text-white mt-5">{newinput.map((item) => <Two data={item} />)}</div>
+				<div class="flex text-lg text-white mt-5">
+					{rantwo.sort().slice(0, 3).map((item) => <Two data={item} />)}
+				</div>
+				<br />
 				<div class="flex text-lg text-white ">{rantwo.sort().slice(3).map((item) => <Two data={item} />)}</div>
+				<br />
+				<br />
+				<div class="flex text-lg text-white">{three.sort().slice(0, 5).map((item) => <Two data={item} />)}</div>
+				<br />
+				<div class="flex text-lg text-white">{three.sort().slice(5).map((item) => <Two data={item} />)}</div>
+
 				{/* <textarea id="w3review" name="w3review" rows="4" cols="50">
 					{ran.map((item) => {
 						return item;
@@ -231,6 +243,14 @@ function App() {
 const ShowAll = (props) => {
 	return <div class="flex text-lg text-white">{props.data}</div>;
 };
+
+const ShowAll2 = (props) => {
+	return (
+		<Fragment>
+			<span class="text-lg text-white">{props.data}</span>
+		</Fragment>
+	);
+};
 const Two = (props) => {
 	return (
 		<React.Fragment>
@@ -241,4 +261,3 @@ const Two = (props) => {
 };
 
 export default App;
-
