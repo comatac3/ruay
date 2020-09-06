@@ -214,7 +214,7 @@ function App() {
 					คำนวน
 				</button>
 				<div class="flex mt-5">{ran.map((item) => <ShowAll data={item} />)}</div>
-				<p class="text-white">ยีกีเว็บรวยรอบที่</p>
+				<div class="text-white">ยีกีเว็บรวยรอบที่</div>
 				<div class="flex mt-5">{<ShowAll2 data={ran[0]} />}</div>
 				<div class="flex">{<ShowAll2 data={ran[1]} />}</div>
 				{/* <div class="flex text-lg text-white">{two.sort().map((item) => <Two data={item} />)}</div> */}
@@ -222,12 +222,9 @@ function App() {
 				<div class="flex text-lg text-white mt-5">
 					{rantwo.sort().slice(0, 3).map((item) => <Two data={item} />)}
 				</div>
-				<br />
 				<div class="flex text-lg text-white ">{rantwo.sort().slice(3).map((item) => <Two data={item} />)}</div>
 				<br />
-				<br />
 				<div class="flex text-lg text-white">{three.sort().slice(0, 5).map((item) => <Two data={item} />)}</div>
-				<br />
 				<div class="flex text-lg text-white">{three.sort().slice(5).map((item) => <Two data={item} />)}</div>
 
 				{/* <textarea id="w3review" name="w3review" rows="4" cols="50">
